@@ -1,0 +1,116 @@
+/* Scroll progress */
+#fx-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--aqua);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 9999;
+  box-shadow: 0 0 12px var(--aqua);
+  pointer-events: none;
+}
+
+/* Scroll reveal */
+.fx-reveal {
+  opacity: 0;
+  transform: translateY(45px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--fx-delay, 0ms);
+}
+
+.fx-reveal.fx-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card hover */
+.ig article,
+.sd,
+.hzc {
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.4s,
+    box-shadow 0.5s;
+}
+
+.ig article:hover,
+.sd:hover,
+.hzc:hover {
+  transform: translateY(-8px);
+  border-color: var(--aqua);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+/* Image hover */
+.ph {
+  transition:
+    clip-path 1.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s ease;
+}
+
+.ph:hover {
+  transform: scale(1.015);
+}
+
+/* Magnetic buttons */
+.btn,
+.gh,
+.top {
+  translate: var(--mag-x, 0px) var(--mag-y, 0px);
+  transition:
+    translate 0.25s ease,
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Aqua glow on links */
+a:not(.btn):hover {
+  text-shadow: 0 0 16px rgba(127, 227, 214, 0.25);
+}
+
+/* Smooth selection */
+::selection {
+  background: var(--aqua);
+  color: #07130f;
+}
+
+/* Mobile adjustments */
+@media (max-width: 820px) {
+  .fx-reveal {
+    transform: translateY(25px);
+  }
+
+  .ig article:hover,
+  .sd:hover,
+  .hzc:hover {
+    transform: none;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .fx-reveal,
+  .ig article,
+  .sd,
+  .hzc,
+  .ph,
+  .btn,
+  .gh,
+  .top {
+    opacity: 1;
+    transform: none;
+    translate: none;
+    transition: none;
+    animation: none;
+  }
+
+  #fx-progress {
+    display: none;
+  }
+}
